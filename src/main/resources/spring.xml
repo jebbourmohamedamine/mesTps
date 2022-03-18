@@ -1,11 +1,33 @@
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
-        "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans>
-    <bean id="controller" class="cigma.pfe.contollers.ClientController"
+    <bean id="controller"
+          class="cigma.pfe.controllers.ClientController"
           scope="prototype">
-        <property name="clientService" ref="service"/>
+        <constructor-arg ref="clientService"/>
     </bean>
-    <bean id="service"
-          class="cigma.pfe.services.ClientServiceImpl"
-          scope="prototype"></bean>
+
+    <bean id="clientService" class="cigma.pfe.services.ClientServiceImpl" scope="prototype">
+        <constructor-arg ref="repository"/>
+    </bean>
+
+    <bean id="repository" class="cigma.pfe.repositories.ClientRepositoryImpl" scope="prototype">
+
+    </bean>
+
+    <!-- -->
+    <!-- beans Factures -->
+
+    <bean id="fcontroller" class="cigma.pfe.controllers.FactureController"
+          scope="prototype">
+        <constructor-arg ref="fservice"/>
+    </bean>
+
+    <bean id="fservice" class="cigma.pfe.services.FactureServiceImpl" scope="prototype">
+        <constructor-arg ref="repository"/>
+    </bean>
+
+    <bean id="frepository" class="cigma.pfe.repositories.FactureRepositoryImpl" scope="prototype">
+
+    </bean>
+
 </beans>
