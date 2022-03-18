@@ -1,20 +1,41 @@
 package cigma.pfe.controllers;
 
-import cigma.pfe.dao.ClientDaoImpl;
-import cigma.pfe.dao.IClientDao;
 import cigma.pfe.models.Client;
 import cigma.pfe.services.ClientService;
 
+import java.util.List;
 public class ClientController {
     ClientService clientService;
+
     public void setClientService(ClientService clientService) {
         this.clientService = clientService;
     }
+
+    public ClientController(ClientService clientService) {
+        System.out.println("Call ClientController with clientService param....");
+        this.clientService = clientService;
+    }
+
     public Client save(Client c ){
         System.out.println("ClientController level...");
-        return IClientDao.save(c);
+        return clientService.save(c);
     }
+
     public ClientController() {
         System.out.println("Call ClientController ....");
+    }
+
+    public void modify(Client c){
+        clientService.modify(c);
+    }
+    public void removeById(long id){
+        clientService.removeById(id);
+    }
+    public Client getById(long id){
+        return clientService.getById(id);
+    }
+
+    public List<Client> getAll(){
+        return clientService.getAll();
     }
 }
